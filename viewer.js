@@ -20,7 +20,7 @@ function mount(el){
   const speed=parseFloat(el.dataset.speed||.3);let mesh;
   (geoCache[el.dataset.model]??=new STLLoader().loadAsync(el.dataset.model).then(g=>{g.computeVertexNormals();g.center();g.computeBoundingBox();const s=new THREE.Vector3();g.boundingBox.getSize(s);const k=2/(Math.max(s.x,s.y,s.z)||1);g.scale(k,k,k);return g}))
   .then(g=>{mesh=new THREE.Mesh(g,new THREE.MeshPhysicalMaterial({color:'#C0C0C0',metalness:1,roughness:0,reflectivity:1,clearcoat:1,clearcoatRoughness:0,envMapIntensity:2,ior:1.8,transmission:.2,thickness:.8,attenuationDistance:1,attenuationColor:'#ffffff'}));
-    mesh.rotation.set(.5,.8,.2);mesh.scale.setScalar(parseFloat(el.dataset.scale||1.2));scene.add(mesh);el.classList.add('loaded')});
+    mesh.rotation.set(...(el.dataset.rot?JSON.parse(el.dataset.rot):[.5,.8,.2]));mesh.scale.setScalar(parseFloat(el.dataset.scale||1.2));scene.add(mesh);el.classList.add('loaded')});
   const size=()=>{const w=el.clientWidth,h=el.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()};
   new ResizeObserver(size).observe(el);size();
   const clock=new THREE.Clock();

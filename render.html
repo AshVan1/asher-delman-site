@@ -1,0 +1,4 @@
+<!doctype html><html><head><script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+<style>html,body{margin:0;background:#ecebe7}#v{width:1000px;height:1250px}</style></head><body><div id="v" class="viewer" data-scale="1.25" data-speed="0"></div>
+<script>const q=new URLSearchParams(location.search),v=document.getElementById('v');v.dataset.model='models/'+q.get('r')+'.stl';if(q.get('rot'))v.dataset.rot=q.get('rot')</script>
+<script type="module">import './viewer.js'</script></body></html>
